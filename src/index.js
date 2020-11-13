@@ -43,8 +43,8 @@ io.on('connection', socket => {
 })
 
 
-server.listen(8888, () => {
-    console.log('Backend Iniciado!')
+server.listen(process.env.PORT || 8888, () => {
+    console.log(`Express server listening on port ${server.address().port} in ${app.settings.env} mode`)
 });
 
 
