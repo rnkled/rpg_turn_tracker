@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+    <script src="./Scripts/background.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+<script>
+        let stars;
+
+        sessionStorage.clear();
+
+        function setup() {
+            stars = new StarsBG();
+        }
+
+        function draw() {
+            background(0);
+            stars.show();
+        }
+
+        function set_name(){
+            sessionStorage.setItem('name', document.getElementById('name').value)
+        }
+
+        function link(link){
+            if(document.getElementById('name').value == ''){
+                alert("You will need a name to Continue.");
+            } else {
+                window.location.assign(link);
+            }
+        }
+        
+</script>
+
+    <div class="login-box">
+        <img src="assets/d20.png">
+        <img src="Assets/space.png" id="title-img">
+
+        <div class="medium_row">
+            <input class="data_input" id="name" type="text" placeholder="Player Name" onchange="set_name()">
+        </div>
+        <button onclick="link('./app.html')">Enter Room</button>
+        <button onclick="link('./setup.html')">Create Room</button>
+    </div>
+
+</body>

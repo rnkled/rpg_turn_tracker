@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+    <script src="Scripts/background.js"></script>
+    <script src="Scripts/app.js"></script>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <script>
+        let stars;
+
+        function setup() {
+            stars = new StarsBG();
+        }
+
+        function draw() {
+            background(0);
+            stars.show();
+        }
+        
+    </script>
+
+    <div id="Content">
+        <div class="column">
+            <div class="row">
+                <div class="cell" id="cell_prev">
+                    <div class="tiny_row"> 
+                        <label class="cell_name" id="cell_name_prev"></label>
+                        <label class="ini" id="ini_prev"></label>
+                    </div>
+                    <div class="row">
+                        <p class="miniText">HP:</p>
+                        <div class="total_hp" id="hp_prev"><div class="current_hp" id="c_hp_prev"></div></div>
+                    </div>
+                    <div class="description_div">
+                        <p class="description_cell" id="description_prev"></p>
+                    </div>
+                </div>
+
+                <button class="nav-button" onclick="app.previous()"> << </button>
+
+                <div class="cell" id="cell_current">
+                    <div class="tiny_row"> 
+                        <label class="cell_name" id="cell_name_current"></label>
+                        <label class="ini" id="ini_current"></label>
+                    </div>
+                    <div class="row">
+                        <p class="miniText">HP:</p>
+                        <div class="total_hp" id="hp_current"><div class="current_hp" id="c_hp_current"></div></div>
+                    </div>
+                    <div class="description_div">
+                        <p class="description_cell" id="description_current"></p>
+                    </div>
+                </div>
+
+                
+                <button class="nav-button" onclick="app.next()"> >> </button>
+
+                <div class="cell" id="cell_next">
+                    <div class="tiny_row"> 
+                        <label class="cell_name" id="cell_name_next"></label>
+                        <label class="ini" id="ini_next"></label>
+                    </div>
+                    <div class="row">
+                        <p class="miniText">HP:</p>
+                        <div class="total_hp" id="hp_next"><div class="current_hp" id="c_hp_next"></div></div>
+                    </div>
+                    <div class="description_div">
+                        <p class="description_cell" id="description_next"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-bottom">
+                <div id="bottom-div">
+                    <div id="scroll-div">
+                        <table id="entitys-table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Initiative</th>
+                            </tr>
+    
+                        </table>
+                        <div id="chat">
+                            <div id="chat-scroll">
+                                <p class="chat-message"><span class="span_chat">Welcome to chat!</span></p>
+                                
+                            </div>
+                            <input type="text" id="chat-text-box">
+                        </div>
+                    </div>
+                    <button id="switch_button" onclick="app.switch()"><></button>
+                    <div id="data-div">
+                        <div class="medium_row">
+                            <label>Name:</label>
+                            <input class="data_input" id="name" onchange="app.update_entity()" maxlength="24">
+                            <label>AC:</label>
+                            <input class="data_input" id="AC" onchange="app.update_entity()" maxlength="3">
+                            <label>Initiative:</label>
+                            <input class="data_input" id="initiative" onchange="app.update_entity()" maxlength="3">
+                        </div>
+                        <div class="medium_row" id="center_field">
+                            <label id="pAttack_label">Primary Attack:</label>
+                            <input class="data_input" id="pAttack" onchange="app.update_entity()">
+                            
+                            <div id="div_hp">
+                                <label>HP:</label>
+                                <input class="data_input" id="cPv" onchange="app.update_entity()" maxlength="3">/<input class="data_input" id="tPv" onchange="app.update_entity()" maxlength="3">
+                            </div>
+                            <label id="hidden_label">Hidden</label>
+                            <input type="checkbox" id="hidden" onchange="app.update_entity()">
+                        </div>
+                        <div class="medium_row">
+                            <label>Description:</label>
+                            <input class="data_input" id="description" onchange="app.update_entity()">
+                        </div>
+                        <textarea id="notes" placeholder="Notes" onchange="app.update_entity_notes()"></textarea>
+                        <div class="medium_row" id="buttons_row">
+                            <button class="bottom_buttons" onclick="app.add_new();">Add New Entity</button>
+                            <button class="bottom_buttons" onclick="app.remove();">Remove Entity</button>
+                            <button class="bottom_buttons" onclick="">Export Combat</button>
+                            <div>
+                                <label id="allow_label">Allow Edit</label>
+                                <input type="checkbox" id="allow" onchange="app.update_edit()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new App();
+    let input = document.getElementById("chat-text-box");
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        app.send_chat();
+    }
+    });
+</script>
+</html>

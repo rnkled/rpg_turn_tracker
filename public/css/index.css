@@ -1,0 +1,117 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#000000, #000000);
+}
+
+h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(216, 216, 216);
+    text-align: center;
+    font-size: 4vh;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(31, 30, 32, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 30px;
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: -3;
+}
+
+img {
+    width: 40%;
+    height: 40%;
+    -webkit-filter: drop-shadow(6px 10px 25px rgba(0, 0, 0, 0.5));
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='6' dy='10' result='offsetblur'/><feFlood flood-color='rgba(0,0,0,0.5)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=10, Color='#444')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=10, Color='#444')";
+    margin-bottom: 3vh;
+}
+
+#title-img {
+    width: 24vw;
+    -webkit-filter: drop-shadow(6px 10px 25px rgba(0, 0, 0, 0.5));
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='6' dy='10' result='offsetblur'/><feFlood flood-color='rgba(0,0,0,0.5)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=10, Color='#444')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=10, Color='#444')";
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.medium_row {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.data_input {
+    width: 18vw;
+    height: 5vh;
+    border-radius: 10px;
+    position: relative;
+    top: -3px;
+    text-align: center;
+    font-size: 3vh;
+}
+
+button {
+    margin: 2vh;
+    float: right;
+    background-color: transparent;
+    color: white;
+    width: 18vw;
+    height: 8vh;
+    border: 0.4px solid rgb(100, 100, 100);
+    border-radius: 6px;
+    padding: 6px;
+    transition-duration: 0.3s;
+    font-size: 3vh;
+}
+
+button:hover {
+    color: black;
+    background-color: white;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+    <script src="Scripts/background.js"></script>
+    <script src="Scripts/setup.js"></script>
+
+    <link rel="stylesheet" href="css/setup.css">
+</head>
+
+<body>
+    <script>
+        let stars;
+
+        function setup() {
+            stars = new StarsBG();
+        }
+
+        function draw() {
+            background(0);
+            stars.show();
+        }
+    </script>
+
+    <div id="Content">
+
+        <div class="row">
+            <div id="FormDiv">
+                <form id="addEntity">
+                    <h1 id="h1-title-Add">New Entity</h1>
+                    <div class="form-input-div">
+                        <label for="name" class="form-label">Name: </label>
+                        <input type="text" name="name" id="name" placeholder=" " autocomplete="off"
+                            class="form-input" />
+                    </div>
+                    <br>
+                    <div class="form-input-div">
+                        <label for="mod" class="form-label">Modifier: </label>
+                        <input type="number" name="mod" id="mod" placeholder=" " autocomplete="off"
+                            class="form-input" />
+                    </div>
+                    <br>
+                    <button type="button" id="submitBT" onclick="addEntity()">Add Entity</button>
+                </form>
+            </div>
+            <div id="info-right">
+                <div id="text-content">
+                    <img src="Assets/space.png" id="title-img">
+                    <p>Add Entitys using the form on the left and then press the Roll button
+                        to roll their initiatives and go to the Turn Management.</p>
+                    <p>You can set the informations later and add the Players Characters too.</p>
+                </div>
+                <img src="Assets/d20-2.gif" id="d20-img">
+            </div>
+        </div>
+        <div class="row">
+            <div id="bottom-div">
+                <div id="scroll-div">
+                    <table id="entitys-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Modifier</th>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div id="select-tip">
+                    <h1 id="h1-title-edit">Quick Tip</h1>
+                    <p>You can change any entity already added to the list simply by clicking on it in the table beside
+                        and editing it here.</p>
+
+                </div>
+
+                <div id="select-edit">
+                    <form id="edit-Entity">
+                        <h1 id="h1-title-edit">Edit Entity</h1>
+                        <div class="form-edit-div">
+                            <label for="edit-name" class="form-label">Name: </label>
+                            <input type="text" name="edit-name" id="edit-name" placeholder=" " autocomplete="off"
+                                class="form-input" />
+                        </div>
+                        <div class="form-edit-div">
+                            <label for="edit-mod" class="form-label">Modifier: </label>
+                            <input type="number" name="edit-mod" id="edit-mod" placeholder=" " autocomplete="off"
+                                class="form-input" />
+                        </div>
+                        <div id="div-edit-buttons">
+                            <button type="button" id="remove-BT" class="baseButtons" onclick="deleteSelected()">
+                                Remove</button>
+                            <button type="button" id="edit-BT" class="baseButtons" onclick="updateSelected()">
+                                Save</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="buttons-div">
+                    <button type="button" id="rollButton" onclick="roll()">Roll!</button>
+
+                    <button type="button" class="baseButtons" onclick="loadFile()">Import Data</button>
+                    <button type="button" class="baseButtons" onclick="exportfile()">Export Data</button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <a id="downloadAnchorElem" style="display:none"></a>
+</body>
