@@ -87,7 +87,7 @@ function roll(){
     if(brute_data.length > 0){
         sessionStorage.setItem('brute_data', JSON.stringify(brute_data));
         sessionStorage.setItem('gm', true);
-        //window.location.assign('./app.html')
+        window.location.assign('./app.html')
     } else {
         alert("Add entitys to continue!")
     }
