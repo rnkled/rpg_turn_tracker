@@ -2,7 +2,7 @@ class App {
 
     constructor() {
 
-        this.socket = io('http://localhost:8888');
+        this.socket = io('http//turn-tracker.herokuapp.com:'+(process.env.PORT || 8888));
 
         this.name = sessionStorage.getItem('name');
         this.gm = sessionStorage.getItem('gm');
