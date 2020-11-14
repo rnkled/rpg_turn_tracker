@@ -10,6 +10,7 @@ class App {
         this.current = 0;
         this.current_entity;
         this.notes = {};
+        this.edit = false;
         this.get_notes();
         this.get_data();
         this.fields_define();
@@ -31,7 +32,8 @@ class App {
     
     socket_hello(){
         if(this.gm){
-            this.socket.emit('data_update', this.data)
+            this.socket.emit('data_update', this.data);
+            this.socket.emit('DM_hello', this.name)
         }else{
             this.socket.emit('hello', this.name);}
     }
@@ -247,12 +249,26 @@ class App {
             ac.style.backgroundColor = bcolor;
             cPv.style.backgroundColor = bcolor;
             tPv .style.backgroundColor = bcolor;
+
+            if(!this.gm){
+                ac.style.pointerEvents = 'none';
+                pAttack.style.pointerEvents = 'none';
+                cPv.style.pointerEvents = 'none';
+                tPv.style.pointerEvents = 'none';
+            }
         } else {
             
             pAttack.style.backgroundColor = "white";
             ac.style.backgroundColor = "white";
             cPv.style.backgroundColor = "white";
             tPv .style.backgroundColor = "white";
+
+            if(this.edit == true){
+            ac.style.pointerEvents = 'auto';
+            pAttack.style.pointerEvents = 'auto';
+            cPv.style.pointerEvents = 'auto';
+            tPv.style.pointerEvents = 'auto';
+            }
         }
 
     }
@@ -416,7 +432,8 @@ class App {
             pAttack.style.display = 'none';
             pAttack_label.style.display = 'none';
             buttons_row.style.display = 'none';
-            div_hp.style.left = '17vw'
+            if(window.innerWidth>600){
+            div_hp.style.left = '17vw'}
             notes.style.height = '50%'
         }
     }
@@ -440,11 +457,15 @@ class App {
         let description = document.getElementById('description');
 
         name.style.pointerEvents = 'auto';
-        ac.style.pointerEvents = 'auto';
         initiative.style.pointerEvents = 'auto';
-        cPv.style.pointerEvents = 'auto';
-        tPv.style.pointerEvents = 'auto';
         description.style.pointerEvents = 'auto';
+            
+        if (hidden.checked == false) {
+            ac.style.pointerEvents = 'auto';
+            cPv.style.pointerEvents = 'auto';
+            tPv.style.pointerEvents = 'auto';
+        }
+        this.edit = true;
     }
 
     edit_off(){
@@ -456,11 +477,14 @@ class App {
         let description = document.getElementById('description');
 
         name.style.pointerEvents = 'none';
-        ac.style.pointerEvents = 'none';
         initiative.style.pointerEvents = 'none';
+        description.style.pointerEvents = 'none';
+
+        ac.style.pointerEvents = 'none';
         cPv.style.pointerEvents = 'none';
         tPv.style.pointerEvents = 'none';
-        description.style.pointerEvents = 'none';
+        this.edit = false;
+    
     }
 
     switch(){

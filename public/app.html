@@ -24,6 +24,10 @@
             background(0);
             stars.show();
         }
+
+        if(!sessionStorage.getItem('name')){
+            window.location.assign('/');
+        }
         
     </script>
 
@@ -44,7 +48,7 @@
                     </div>
                 </div>
 
-                <button class="nav-button" onclick="app.previous()"> << </button>
+                <button class="nav-button" onclick="app.previous()" id="nav-button-left"> << </button>
 
                 <div class="cell" id="cell_current">
                     <div class="tiny_row"> 
@@ -61,7 +65,7 @@
                 </div>
 
                 
-                <button class="nav-button" onclick="app.next()"> >> </button>
+                <button class="nav-button" onclick="app.next()" id="nav-button-right"> >> </button>
 
                 <div class="cell" id="cell_next">
                     <div class="tiny_row"> 

@@ -25,6 +25,10 @@
             background(0);
             stars.show();
         }
+
+        if(!sessionStorage.getItem('name')){
+            window.location.assign('/');
+        }
     </script>
 
     <div id="Content">

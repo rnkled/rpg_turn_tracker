@@ -20,27 +20,41 @@ io.on('connection', socket => {
     socket.on('data_update', received_data => {
         data = received_data;
         socket.broadcast.emit('update', data);
-    })
+    });
 
     socket.on('hello', name => {
         socket.emit('data_init', {'data': data, 'chat':chat});
-        socket.broadcast.emit('chat_update', {'author':'<>','message':`${name} joins chat.`})
-    })
+        socket.broadcast.emit('chat_update', {'author':'<>','message':`${name} joins chat.`});
+        socket.name = name;
+        console.log(`${name} Connected`);
+    });
+
+    socket.on('DM_hello', name => {
+        socket.broadcast.emit('chat_update', {'author':'<>','message':`[DM] ${name} joins chat.`});
+        socket.name = name;
+        console.log(`[DM] ${name} Connected`);
+    });
 
     socket.on('edit_on', () => {
         socket.broadcast.emit('edit_on');
-    })
+    });
 
     socket.on('edit_off', () => {
         socket.broadcast.emit('edit_off');
-    })
+    });
 
     socket.on('chat_message', received_data => {
         chat.push(received_data);
         socket.broadcast.emit('chat_update', received_data);
         check_comando(received_data);
-    })
-})
+    });
+
+    socket.once('disconnect', () =>{
+        io.emit('chat_update', {'author':'<>','message':`${socket.name} exits chat.`});
+        console.log(`${socket.name} Disconnected`);
+    });
+});
+
 
 
 server.listen(process.env.PORT || 8888, () => {
@@ -59,7 +73,7 @@ function check_comando(message){
             chat.push(roll_data);
             io.emit('chat_update', roll_data);    
         } catch (error) {
-            let string = "Sorry, there was a problems with the Roll. Try again"
+            let string = "Sorry, there was a problems with the Command. Try again"
             let roll_data = {'author':'<>', 'message':string};
             chat.push(roll_data);
             io.emit('chat_update', roll_data);

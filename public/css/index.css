@@ -115,3 +115,18 @@ button:hover {
 :-ms-input-placeholder {
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    button {
+        width: 80%;
+    }
+
+    .data_input {
+        width: 80%;
+        left: 10%;
+    }
+
+    #title-img {
+        width: 90%;
+    }
+}

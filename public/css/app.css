@@ -1,6 +1,8 @@
 html {
     height: 100%;
     overflow: hidden;
+    box-sizing: border-box;
+    resize: horizontal;
 }
 
 body {
@@ -17,6 +19,7 @@ body {
 #Content {
     color: white;
     width: 60%;
+    min-width: 60%;
     height: 90%;
     background-image: linear-gradient(rgba(37, 37, 37, 0.356), rgba(19, 18, 18, 0.315));
     border-radius: 30px;
@@ -355,4 +358,154 @@ tr:hover {
 
 .span_chat {
     color: rgb(136, 136, 136);
+}
+
+
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column;
+        margin-bottom: 0vh;
+        align-items: center;
+        height: 25vh;
+    }
+
+    #cell_current {
+        width: 44vw;
+    }
+
+    #nav-button-right {
+        position: absolute;
+        right: 12%;
+        top: 17%;
+    }
+
+    #nav-button-left {
+        position: absolute;
+        left: 12%;
+        top: 17%;
+    }
+
+    .nav-button {
+        width: 16vw;
+        height: 8vh;
+    }
+
+    #bottom-div {
+        flex-direction: column-reverse;
+        margin-top: 6vh;
+        height: fit-content;
+        align-items: center;
+    }
+
+    html {
+        overflow: scroll;
+    }
+
+    #Content {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    #cell_prev {
+        display: none;
+    }
+
+    #cell_next {
+        display: none;
+    }
+
+    #scroll-div {
+        width: 92%;
+        height: 320px;
+
+    }
+
+    #data-div {
+        width: 92%;
+        height: fit-content;
+        top: 30px;
+    }
+
+    .medium_row {
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 23px;
+    }
+
+    .data_input {
+        width: 100%;
+    }
+
+    #name {
+        width: 100%;
+    }
+
+    #pAttack {
+        width: 100%;
+    }
+
+    #cPv {
+        width: 100%;
+    }
+
+    #div_hp {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        left: 0;
+    }
+
+    #notes {
+        height: 24vh;
+        width: 93%;
+        position: relative;
+        left: 2vw;
+        margin-bottom: 20px;
+    }
+
+    #buttons_row {
+        align-items: center;
+    }
+
+    .bottom_buttons {
+        width: 100%;
+        height: 6vh;
+        margin-bottom: 20px;
+        font-size: 20px;
+        position: relative;
+        left: 0.5vw;
+    }
+
+    .miniText {
+        display: none;
+    }
+
+    .description_cell {
+        font-size: 20px;
+
+    }
+
+    .description_div {
+        margin-top: 2.5vh;
+    }
+
+    #switch_button {
+        top: 0%;
+        margin: 30px;
+        border: 0.4px solid rgb(100, 100, 100);
+        width: 15vw;
+    }
+
+    th,
+    td {
+        font-size: 20px;
+
+    }
+
+    #chat-scroll {
+        height: 280px;
+    }
 }
