@@ -4,6 +4,8 @@ class App {
 
         this.socket = io();
 
+        this.room = this.getRoom();
+
         this.name = sessionStorage.getItem('name');
         this.gm = sessionStorage.getItem('gm');
         this.dice = 20;
@@ -29,13 +31,19 @@ class App {
         this.socket.on('edit_off', ()=>{this.edit_off()});
         this.socket.on('chat_update', (message) => {this.add_message(message['author'], message['message'])})
     }
+
+    getRoom(){
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        return urlParams.get('room');
+    }
     
     socket_hello(){
         if(this.gm){
+            this.socket.emit('DM_hello', {'name':this.name, 'room':this.room});
             this.socket.emit('data_update', this.data);
-            this.socket.emit('DM_hello', this.name)
         }else{
-            this.socket.emit('hello', this.name);}
+            this.socket.emit('hello', {'name':this.name, 'room':this.room});}
     }
 
     sort_Data(){

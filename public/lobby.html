@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="Scripts/background.js"></script>
+    <script src="Scripts/lobby.js"></script>
+    <link rel="stylesheet" href="css/lobby.css">
+</head>
+
+<body>
+    <script>
+        let stars;
+
+        function setup() {
+            stars = new StarsBG();
+        }
+
+        function draw() {
+            background(0);
+            stars.show();
+        }
+
+        if(!sessionStorage.getItem('name')){
+            window.location.assign('/');
+        }
+
+        get_rooms();
+        
+    </script>
+
+    <div id="Content">
+        <div id="frame">
+            <label id="title">Avaliable Rooms</label>
+            <div id="scroll-div">
+
+            </div>
+            <div id="buttons_row">
+                <button class="bottom_buttons" onclick="window.location.assign('/');">Cancel</button>
+                <button class="bottom_buttons" onclick="window.location.assign('/setup');">Create New</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

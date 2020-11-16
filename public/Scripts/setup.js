@@ -85,9 +85,13 @@ function roll(){
     let brute_data = tableToObj(table);
 
     if(brute_data.length > 0){
+        if(document.getElementById("room-name").value.length > 0){
         sessionStorage.setItem('brute_data', JSON.stringify(brute_data));
         sessionStorage.setItem('gm', true);
-        window.location.assign('./app.html')
+        window.location.assign(`./app?room=${document.getElementById("room-name").value}`)
+        } else {
+            alert("Add a Room Name to continue!")
+        }
     } else {
         alert("Add entitys to continue!")
     }

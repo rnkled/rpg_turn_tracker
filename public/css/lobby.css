@@ -1,0 +1,209 @@
+html {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    resize: horizontal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: black;
+    font-size: 1.2vw;
+
+}
+
+#Content {
+    color: white;
+    width: 60%;
+    min-width: 60%;
+    height: 90%;
+    background-image: linear-gradient(rgba(37, 37, 37, 0.356), rgba(19, 18, 18, 0.315));
+    border-radius: 30px;
+    position: absolute;
+    top: 5%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#frame {
+    display: block;
+    background-color: rgb(24, 24, 24, 0.9);
+    height: 85%;
+    margin: 30px;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    font-size: 5vh;
+    border-bottom: 1.5px solid white;
+    padding: 6px;
+}
+
+#scroll-div {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    height: 90%;
+    width: 97%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(19, 18, 18, 0.9);
+    border-radius: 10px;
+}
+
+#scroll-div::-webkit-scrollbar {
+    display: none;
+}
+
+.div-room {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(34, 34, 34, 0.9);
+    padding: 12px;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.room-name {
+    overflow: hidden;
+    font-size: 20px;
+    width: 55%;
+    font-style: italic;
+}
+
+.room-dm {
+    overflow: hidden;
+    position: relative;
+    bottom: -2px;
+    font-size: 18px;
+    width: 40%;
+    font-style: italic;
+    color: rgba(112, 107, 107, 0.9);
+}
+
+.room-players {
+    overflow: hidden;
+    position: relative;
+    font-size: 20px;
+    width: 5%;
+    font-style: italic;
+    color: rgba(56, 129, 27, 0.534);
+}
+
+button {
+    position: relative;
+    width: 80px;
+    font-size: 18px;
+    float: right;
+    background-color: transparent;
+    color: white;
+    font-weight: bolder;
+    border: 0.4px solid rgb(126, 126, 126);
+    border-radius: 6px;
+    padding: 4px;
+    transition-duration: 0.3s;
+}
+
+button:hover {
+    color: black;
+    background-color: white;
+}
+
+#buttons_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px;
+    margin-top: 15px;
+}
+
+.bottom_buttons {
+    background-color: transparent;
+    color: white;
+    border: 0.4px solid rgb(100, 100, 100);
+    border-radius: 6px;
+    padding: 6px;
+    transition-duration: 0.3s;
+    width: fit-content;
+    float: none;
+    font-size: 20px;
+    padding-right: 3vw;
+    padding-left: 3vw;
+}
+
+.bottom_buttons:hover {
+    color: black;
+    background-color: white;
+}
+
+.media-adapter {
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    display: flex;
+}
+
+@media (max-width: 600px) {
+
+    html {
+        overflow: scroll;
+    }
+
+    #Content {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    #frame {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #scroll-div {
+        width: inherit;
+    }
+
+    .media-adapter {
+        flex-direction: column;
+        width: 85%;
+    }
+
+    .room-name {
+        overflow: hidden;
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .room-dm {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .room-players {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    button {
+        width: fit-content;
+        height: fit-content;
+        font-size: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+
+    }
+
+}
