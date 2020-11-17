@@ -148,6 +148,7 @@ function check_comando(message, socket){
 
 function validate(socket, data){
     if(!data['name'] || !data['room']){
+        console.log("Invalid State, Disconnected!")
         socket.disconnect();
     }
 }

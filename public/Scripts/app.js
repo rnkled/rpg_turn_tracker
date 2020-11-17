@@ -99,72 +99,79 @@ class App {
 
     update_cells(){
         
-        let length = this.data.length-1;
-        let prev = this.current - 1;
-        let next = this.current + 1;
+        try {
+            let length = this.data.length-1;
+            let prev = this.current - 1;
+            let next = this.current + 1;
 
-        if(prev < 0){
-            prev = length;
-        }
-        if(next > length){
-            next = 0;
-        }
+            if(prev < 0){
+                prev = length;
+            }
+            if(next > length){
+                next = 0;
+            }
 
-        let prevName = document.getElementById('cell_name_prev');
-        let iniPrev = document.getElementById('ini_prev')
-        let descPrev = document.getElementById('description_prev')
-        prevName.innerText = this.data[prev]['name'];
-        iniPrev.innerText = this.data[prev]['initiative'];
-        descPrev.innerText = format_desc(this.check_string(this.data[prev]['description']));
-        
-        let currentName = document.getElementById('cell_name_current');
-        let iniCurrent = document.getElementById('ini_current')
-        let descCurrent = document.getElementById('description_current')
-        currentName.innerText = this.data[this.current]['name'];
-        iniCurrent.innerText = this.data[this.current]['initiative'];
-        descCurrent.innerText = format_desc(this.check_string(this.data[this.current]['description']));
-        
-        let nextName = document.getElementById('cell_name_next');
-        let iniNext = document.getElementById('ini_next')
-        let descNext = document.getElementById('description_next')
-        nextName.innerText = this.data[next]['name'];
-        iniNext.innerText = this.data[next]['initiative'];
-        descNext.innerText = format_desc(this.check_string(this.data[next]['description']));
+            let prevName = document.getElementById('cell_name_prev');
+            let iniPrev = document.getElementById('ini_prev')
+            let descPrev = document.getElementById('description_prev')
+            prevName.innerText = this.data[prev]['name'];
+            iniPrev.innerText = this.data[prev]['initiative'];
+            descPrev.innerText = format_desc(this.check_string(this.data[prev]['description']));
+            
+            let currentName = document.getElementById('cell_name_current');
+            let iniCurrent = document.getElementById('ini_current')
+            let descCurrent = document.getElementById('description_current')
+            currentName.innerText = this.data[this.current]['name'];
+            iniCurrent.innerText = this.data[this.current]['initiative'];
+            descCurrent.innerText = format_desc(this.check_string(this.data[this.current]['description']));
+            
+            let nextName = document.getElementById('cell_name_next');
+            let iniNext = document.getElementById('ini_next')
+            let descNext = document.getElementById('description_next')
+            nextName.innerText = this.data[next]['name'];
+            iniNext.innerText = this.data[next]['initiative'];
+            descNext.innerText = format_desc(this.check_string(this.data[next]['description']));
 
-        function format_desc(desc){
-        if(desc){
-            return ('“' + desc + '”')
-        } else { 
-            return null};
-        }
+            function format_desc(desc){
+            if(desc){
+                return ('“' + desc + '”')
+            } else { 
+                return null};
+            }
 
-        let prevHPbar = document.getElementById('c_hp_prev');
-        let currentHPbar = document.getElementById('c_hp_current');
-        let nextHPbar = document.getElementById('c_hp_next');
-        
-        if(this.data[prev]['hidden'] != true){
-            prevHPbar.style.width = checkBar(parseInt(parseInt(this.data[prev]['cPv']) / parseInt(this.data[prev]['tPv']) * 100)+'%')
-            prevHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
-        } else {
-            prevHPbar.style.width = '100%'
-            prevHPbar.style.backgroundColor = "rgb(54, 3, 3)"
-        }
-        
-        
-        if(this.data[this.current]['hidden'] != true){
-            currentHPbar.style.width = checkBar(parseInt(parseInt(this.data[this.current]['cPv']) / parseInt(this.data[this.current]['tPv']) * 100)+'%')
-            currentHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
-        } else {
-            currentHPbar.style.width = '100%'
-            currentHPbar.style.backgroundColor = "rgb(54, 3, 3)"
-        }
-        
-        if(this.data[next]['hidden'] != true){
-            nextHPbar.style.width = checkBar(parseInt(parseInt(this.data[next]['cPv']) / parseInt(this.data[next]['tPv']) * 100)+'%')
-            nextHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
-        } else {
-            nextHPbar.style.width = '100%'
-            nextHPbar.style.backgroundColor = "rgb(54, 3, 3)"
+            let prevHPbar = document.getElementById('c_hp_prev');
+            let currentHPbar = document.getElementById('c_hp_current');
+            let nextHPbar = document.getElementById('c_hp_next');
+            
+            if(this.data[prev]['hidden'] != true){
+                prevHPbar.style.width = checkBar(parseInt(parseInt(this.data[prev]['cPv']) / parseInt(this.data[prev]['tPv']) * 100)+'%')
+                prevHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
+            } else {
+                prevHPbar.style.width = '100%'
+                prevHPbar.style.backgroundColor = "rgb(54, 3, 3)"
+            }
+            
+            
+            if(this.data[this.current]['hidden'] != true){
+                currentHPbar.style.width = checkBar(parseInt(parseInt(this.data[this.current]['cPv']) / parseInt(this.data[this.current]['tPv']) * 100)+'%')
+                currentHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
+            } else {
+                currentHPbar.style.width = '100%'
+                currentHPbar.style.backgroundColor = "rgb(54, 3, 3)"
+            }
+            
+            if(this.data[next]['hidden'] != true){
+                nextHPbar.style.width = checkBar(parseInt(parseInt(this.data[next]['cPv']) / parseInt(this.data[next]['tPv']) * 100)+'%')
+                nextHPbar.style.backgroundColor = 'rgb(161, 6, 6)';
+            } else {
+                nextHPbar.style.width = '100%'
+                nextHPbar.style.backgroundColor = "rgb(54, 3, 3)"
+            }
+
+        } catch (error) {
+            console.log(error);
+            alert('Sorry! There as Problem loading Data, please Refresh page!');
+            //window.location.reload();
         }
 
         function checkBar(value){
@@ -174,6 +181,7 @@ class App {
                 return value;
             }
         }
+
 
 
     }
@@ -300,8 +308,8 @@ class App {
     get_data(){
         if(sessionStorage.getItem('data')){
             this.data = JSON.parse(sessionStorage.getItem('data'))
-            this.update_cells();
-            this.make_table();
+            //this.update_cells();
+            //this.make_table();
         } else {
             this.data = {}
         }
