@@ -397,20 +397,25 @@ class App {
 
     receive_update(data){
         if(data){
-        console.log(data);
-        this.data = data['data'];
-        this.current = data['current'];
-        this.update_cells();
-        this.make_table();
+            console.log('update');
+            console.log(data);
+            this.data = data['data'];
+            this.current = data['current'];
+            this.update_cells();
+            this.make_table();
         }
     }
 
     set_data(data){
         if(data){
-        this.data = data['data'];
-        this.set_chat(data['chat']);
-        this.update_cells();
-        this.make_table();
+            
+            console.log('set');
+            console.log(data);
+            this.data = data['data'];
+            this.current = data['current'];
+            this.set_chat(data['chat']);
+            this.update_cells();
+            this.make_table();
         }
     }
 
