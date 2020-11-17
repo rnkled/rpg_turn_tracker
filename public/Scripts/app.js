@@ -408,6 +408,7 @@ class App {
 
     set_data(data){
         if(data){
+            console.log(data);
             this.data = data['data'];
             if(this.current){
                 this.current = data['current'];}
