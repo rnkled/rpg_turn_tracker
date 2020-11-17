@@ -98,7 +98,7 @@ class App {
     }
 
     update_cells(){
-        
+        console.log(this.data);
         try {
             let length = this.data.length-1;
             let prev = this.current - 1;
@@ -408,11 +408,9 @@ class App {
 
     set_data(data){
         if(data){
-            
-            console.log('set');
-            console.log(data);
             this.data = data['data'];
-            this.current = data['current'];
+            if(this.current){
+                this.current = data['current'];}
             this.set_chat(data['chat']);
             this.update_cells();
             this.make_table();
