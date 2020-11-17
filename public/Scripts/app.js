@@ -397,6 +397,7 @@ class App {
 
     receive_update(data){
         if(data){
+        console.log(data);
         this.data = data['data'];
         this.current = data['current'];
         this.update_cells();
