@@ -54,7 +54,7 @@ io.on('connection', socket => {
 
     socket.on('hello', (data) => {
         try {
-            validate(socket, data);
+            //validate(socket, data);
             socket.join("#"+data['room']);
             
             socket.room_name = "#"+data['room'];
@@ -72,7 +72,7 @@ io.on('connection', socket => {
 
     socket.on('DM_hello', (data) => {
         try {
-            validate(socket, data);
+            //validate(socket, data);
             socket.join("#"+data['room']);
             
             socket.room_name = "#"+data['room'];
