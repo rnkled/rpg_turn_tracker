@@ -410,7 +410,7 @@ class App {
         if(data){
             console.log(data);
             this.data = data['data'];
-            if(this.current){
+            if(data['current']){
                 this.current = data['current'];}
             this.set_chat(data['chat']);
             this.update_cells();
