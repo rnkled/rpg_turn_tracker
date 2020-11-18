@@ -15,6 +15,7 @@ class App {
         this.edit = false;
         this.get_notes();
         this.get_data();
+        this.set_input_chat();
         this.fields_define();
 
         if(this.gm && (Object.keys(this.data).length === 0)){
@@ -31,6 +32,9 @@ class App {
         this.socket.on('edit_off', ()=>{this.edit_off()});
         this.socket.on('chat_update', (message) => {this.add_message(message['author'], message['message'])})
         this.socket.on('current_update', (current) => {this.set_current(current)});
+        this.socket.on('show_image', (img) => {this.display_image(img)})
+        this.socket.on('error', () => {window.location.assign("./lobby");});
+        
     }
 
     getRoom(){
@@ -99,7 +103,6 @@ class App {
     }
 
     update_cells(){
-        console.log(this.data);
         try {
             let length = this.data.length-1;
             let prev = this.current - 1;
@@ -172,7 +175,7 @@ class App {
         } catch (error) {
             console.log(error);
             alert('Sorry! There as Problem loading Data, please Refresh page!');
-            window.location.reload();
+            window.location.assign("./lobby");
         }
 
         function checkBar(value){
@@ -316,6 +319,33 @@ class App {
         }
     }
 
+    set_input_chat(){
+        let input = document.getElementById("chat-text-box");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                app.send_chat();
+        }
+    });}
+
+    display_image(img){
+        let overlay = document.getElementById('overlay');
+        overlay.classList.add('active');
+        overlay.onclick = () => {
+            overlay.classList.remove('active');
+            overlay.innerHTML = '';
+        }
+        
+        let img_overlay = document.createElement('div');
+        img_overlay.classList.add('img-overlay');
+
+        let img_element = document.createElement('img');
+        img_element.setAttribute("src", img);
+
+
+        img_overlay.appendChild(img_element);
+        overlay.appendChild(img_overlay);
+    }
+
     update_entity_notes(){
         let notes = document.getElementById('notes');
         this.notes[this.current_entity['id']] = notes.value;
@@ -398,8 +428,6 @@ class App {
 
     receive_update(data){   
         if(data){
-            console.log('update');
-            console.log(data);
             this.data = data;
             this.update_cells();
             this.make_table();
@@ -518,9 +546,13 @@ class App {
         let table = document.getElementById('entitys-table');
         let chat = document.getElementById('chat');
 
-        if(table.style.display == "none"){
+        console.log('debug')
+        console.log(table.style.display)
+        console.log(chat.style.display)
+
+        if(chat.style.display == 'block'){
             chat.style.display = 'none';
-            table.style.display = ""
+            table.style.display = "table"
         } else {
             chat.style.display = 'block';
             table.style.display = "none"
@@ -544,6 +576,7 @@ class App {
             message['message'] = input.value;
             input.value = "";
             this.socket.emit('chat_message', message);
+            if(!(message['message'][0] == '/'))
             this.add_message(message['author'], message['message']);
         }
     }

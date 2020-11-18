@@ -91,7 +91,7 @@
                             </tr>
     
                         </table>
-                        <div id="chat">
+                        <div id="chat" style="display: block;">
                             <div id="chat-scroll">
                                 <p class="chat-message"><span class="span_chat">Welcome to chat!</span></p>
                                 
@@ -139,14 +139,9 @@
             </div>
         </div>
     </div>
+    <div id="overlay"></div>
 </body>
 <script>
     var app = new App();
-    let input = document.getElementById("chat-text-box");
-    input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        app.send_chat();
-    }
-    });
 </script>
 </html>
