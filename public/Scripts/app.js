@@ -30,6 +30,7 @@ class App {
         this.socket.on('edit_on', ()=>{this.edit_on()});
         this.socket.on('edit_off', ()=>{this.edit_off()});
         this.socket.on('chat_update', (message) => {this.add_message(message['author'], message['message'])})
+        this.socket.on('current_update', (current) => {this.set_current(current)});
     }
 
     getRoom(){
@@ -171,7 +172,7 @@ class App {
         } catch (error) {
             console.log(error);
             alert('Sorry! There as Problem loading Data, please Refresh page!');
-            //window.location.reload();
+            window.location.reload();
         }
 
         function checkBar(value){
@@ -192,7 +193,7 @@ class App {
         } else {
             this.current -= 1;
         }
-        this.send_update();
+        this.socket.emit('send_current', this.current);
         this.update_cells();
         this.make_table();
     }
@@ -203,7 +204,7 @@ class App {
         } else {
             this.current += 1;
         }
-        this.send_update();
+        this.socket.emit('send_current', this.current);
         this.update_cells();
         this.make_table();
     }
@@ -391,16 +392,23 @@ class App {
                 element['tPv'] = null;
             }
         })
-        let data = {'current': this.current, 'data': sendData}
+        let data = sendData
         this.socket.emit('data_update', data);
     }
 
-    receive_update(data){
+    receive_update(data){   
         if(data){
             console.log('update');
             console.log(data);
-            this.data = data['data'];
-            this.current = data['current'];
+            this.data = data;
+            this.update_cells();
+            this.make_table();
+        }
+    }
+
+    set_current(current){
+        if(Number.isInteger(current)){
+            this.current = current;
             this.update_cells();
             this.make_table();
         }
@@ -410,8 +418,6 @@ class App {
         if(data){
             console.log(data);
             this.data = data['data'];
-            if(data['current']){
-                this.current = data['current'];}
             this.set_chat(data['chat']);
             this.update_cells();
             this.make_table();

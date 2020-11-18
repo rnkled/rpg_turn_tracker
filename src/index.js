@@ -60,8 +60,8 @@ io.on('connection', socket => {
             socket.room_name = "#"+data['room'];
             socket.name = data['name'];
 
-            console.log(rooms[socket.room_name]['chat']);
-            socket.emit('data_init', {'data': rooms[socket.room_name]['data']['data'], 'chat':rooms[socket.room_name]['chat'], 'current':rooms[socket.room_name]['data']['current']});
+            console.log(rooms[socket.room_name]['data']);
+            socket.emit('data_init', {'data': rooms[socket.room_name]['data'], 'chat':rooms[socket.room_name]['chat'], 'current':rooms[socket.room_name]['data']['current']});
             socket.to(socket.room_name).emit('chat_update', {'author':'<>','message':`${socket.name} joins chat.`});
             
             console.log(`${socket.name} Connected to ${socket.room_name}`);   
@@ -108,6 +108,11 @@ io.on('connection', socket => {
     socket.on('edit_off', () => {
         socket.to(socket.room_name).emit('edit_off');
     });
+
+    socket.on('send_current', (current) => {
+        socket.to(socket.room_name).emit('current_update', current);
+    });
+
 
     socket.on('chat_message', received_data => {
         console.log(rooms[socket.room_name]['chat']);

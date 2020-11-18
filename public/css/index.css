@@ -91,6 +91,7 @@ button {
     padding: 6px;
     transition-duration: 0.3s;
     font-size: 3vh;
+    cursor: pointer;
 }
 
 button:hover {

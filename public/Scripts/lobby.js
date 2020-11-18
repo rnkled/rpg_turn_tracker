@@ -1,4 +1,6 @@
 function create_room(room){
+    
+    var foward = function() {window.location.assign(`./app?room=${room['name']}`)};
     let scrollDiv = document.getElementById('scroll-div');
 
     let divRoom = document.createElement('div');
@@ -7,28 +9,30 @@ function create_room(room){
     let mediaAdapter = document.createElement('div');
     mediaAdapter.classList.add('media-adapter');
 
-    /*
+    
     let players = document.createElement('label');
     players.classList.add('room-players');
-    players.innerText = +room['players'];
-    */
+    players.innerText = `[Online Players: ${room['players']}]`;
+    
+
     let name = document.createElement('label');
     name.classList.add('room-name');
     name.innerText = room['name'];
+    name.onclick = foward;
     
     let dm = document.createElement('label');
     dm.classList.add('room-dm');
     dm.innerText = `Created by ${room['gm']}`;
 
     let button = document.createElement('button');
-    button.onclick = () => {window.location.assign(`./app?room=${room['name']}`)};
+    button.onclick = foward;
     button.innerText = "Join";
 
     scrollDiv.appendChild(divRoom);
     divRoom.appendChild(mediaAdapter);
-    //mediaAdapter.appendChild(players);
     mediaAdapter.appendChild(name);
     mediaAdapter.appendChild(dm);
+    name.appendChild(players);
     divRoom.appendChild(button);
 
 }

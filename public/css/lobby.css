@@ -79,6 +79,8 @@ body {
     font-size: 20px;
     width: 55%;
     font-style: italic;
+    white-space: pre-wrap;
+    cursor: pointer;
 }
 
 .room-dm {
@@ -92,15 +94,23 @@ body {
 }
 
 .room-players {
-    overflow: hidden;
+    visibility: hidden;
+    color: rgb(99, 98, 98);
+    text-align: center;
     position: relative;
-    font-size: 20px;
-    width: 5%;
-    font-style: italic;
-    color: rgba(56, 129, 27, 0.534);
+    bottom: -2px;
+    z-index: 1;
+    float: right;
+    right: 10px;
+    font-size: 18px;
+}
+
+.room-name:hover .room-players {
+    visibility: visible;
 }
 
 button {
+    cursor: pointer;
     position: relative;
     width: 80px;
     font-size: 18px;
@@ -205,5 +215,13 @@ button:hover {
 
 
     }
+
+    .room-players {
+        visibility: hidden;
+        float: left;
+        right: 0;
+        height: 0;
+    }
+
 
 }
