@@ -48,11 +48,11 @@ The App will start on:
 `localhost:8888/`
 
 ## Screenshots 
-![alt text](https://i.ibb.co/S0gJsmz/home.png)
+![alt text](https://i.ibb.co/KjycHmV/home.png)
 ![alt text](https://i.ibb.co/wQMTrm1/create.png)
 ![alt text](https://i.ibb.co/Jjhh0Hs/game-1.png)
 ![alt text](https://i.ibb.co/hH6TTxB/lobby.png)
 ![alt text](https://i.ibb.co/GsPjPJr/game2.png)
 ![alt text](https://i.ibb.co/3rHKZnF/smart.png)
-![alt text](https://i.ibb.co/Xp8Ndrh/smart2resize.png)
+![alt text](https://i.ibb.co/99Z92Rp/smart2resize.png)
 ![alt text](https://i.ibb.co/xFh7CTY/lobby2.png)
