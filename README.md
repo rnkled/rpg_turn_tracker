@@ -31,7 +31,7 @@ Relies on 'Roll' library to Manage Dice Rolls on Chat, and 'Valid-URL' to valida
   * Body-Parser
   * EJS
   
-## Installation:  
+## Installation
 
 Clone down this repository to your machine. You will need node and npm installed.  
 
